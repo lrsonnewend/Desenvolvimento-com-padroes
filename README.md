@@ -1,2 +1,3 @@
 # Desenvolvimento-com-padroes
-Aplicando conhecimentos da matéria de Engenharia de software 3
+
+Design Patterns com java: criando projetos orientados a objeto guiado por padrões.
