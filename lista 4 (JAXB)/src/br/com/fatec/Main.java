@@ -21,19 +21,18 @@ public class Main {
 	@SuppressWarnings({ "unchecked", "static-access" })
 	public static void main(String[] args) throws IOException, JAXBException {
 
-		String caminhoXml = "/home/lucas/Downloads/listas/lista 4 (JAXB)/json.json";
+		String caminhoArquivo = "C:\\Users\\Aluno\\Desktop\\listas\\lista 4 (JAXB)\\xml.xml";
 		TipoArquivo pessoaTipo;
-		List<Pessoa> pagamentos = new ArrayList<>();
 		Cpf validaCpf = new Cpf();
 		
-		if (caminhoXml.contains(".xml"))
+		if (caminhoArquivo.contains(".xml"))
 			pessoaTipo = new Xml();
 		else
 			pessoaTipo = new Json();
 			
-			System.out.println(pessoaTipo.leTipo());
+			System.out.println(pessoaTipo.leTipo(caminhoArquivo));
 			
-			for(Pessoa p: pessoaTipo.leTipo()) {
+			for(Pessoa p: pessoaTipo.leTipo(caminhoArquivo)) {
 				if(!validaCpf.isValidCPF(p.getCpf())) {
 					System.out.println("CPF: "+p.getCpf()+ " (inválido)");
 				}

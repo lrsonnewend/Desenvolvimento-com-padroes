@@ -20,12 +20,12 @@ import com.google.gson.reflect.TypeToken;
 public class Json implements TipoArquivo {
 	
 	@Override
-	public List<Pessoa> leTipo() throws IOException {
+	public List<Pessoa> leTipo(String caminhoArquivo) throws IOException {
 		Gson gson = new Gson();
 		List<Pessoa> pessoas = new ArrayList<>();
 
-		String caminho = "/home/lucas/Downloads/listas/lista 4 (JAXB)/json.json";
-		BufferedReader leitor = new BufferedReader(new FileReader(caminho));
+		//String caminho = "C:\\Users\\Aluno\\Desktop\\listas\\lista 4 (JAXB)\\json.json";
+		BufferedReader leitor = new BufferedReader(new FileReader(caminhoArquivo));
 		
 		String linha = leitor.readLine();
 		String json = "";

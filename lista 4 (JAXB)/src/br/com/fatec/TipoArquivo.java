@@ -8,5 +8,5 @@ import java.util.List;
 import javax.xml.bind.JAXBException;
 
 public interface TipoArquivo {
-	public List<Pessoa> leTipo() throws IOException, JAXBException, FileNotFoundException;
+	public List<Pessoa> leTipo(String caminhoArquivo) throws IOException, JAXBException, FileNotFoundException;
 }

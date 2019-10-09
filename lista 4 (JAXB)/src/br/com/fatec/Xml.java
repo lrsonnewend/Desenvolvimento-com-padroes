@@ -19,12 +19,11 @@ import com.google.gson.reflect.TypeToken;
 public class Xml implements TipoArquivo {
 
 	@Override
-	public List<Pessoa> leTipo() throws JAXBException, FileNotFoundException {
-		String caminhoXml = "/home/lucas/Downloads/listas/lista 4 (JAXB)/xml.xml";
+	public List<Pessoa> leTipo(String caminhoArquivo) throws JAXBException, FileNotFoundException {
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(PessoaList.class);
 		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		InputStream stream = new FileInputStream(new File(caminhoXml));
+		InputStream stream = new FileInputStream(new File(caminhoArquivo));
 
 		PessoaList people = (PessoaList) unmarshaller.unmarshal(stream);
 		List<Pessoa> pessoas2 = new ArrayList<Pessoa>();
