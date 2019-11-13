@@ -1,54 +1,56 @@
 package br.com.engine;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import  br.com.fatec.*;
+import br.com.model.Cliente;
+import br.com.model.DAO.ClienteDAO;
 
 public class EngineCliente {
-	int c = 0;
-	List<Cliente> clientes = new ArrayList<>();
 	Cliente cliente = Cliente.newCliente();
 
-	public List<Cliente> create () throws ParseException{
-		Date date;
-		String dataNascimento;
-		c+=1;
-		
-		cliente.setGenero(JOptionPane.showInputDialog("Genero: "));
-		cliente.setNome(JOptionPane.showInputDialog("Nome: "));
-		dataNascimento = JOptionPane.showInputDialog("Data de nascimento: ");
-		date = new SimpleDateFormat("dd-MM-yyyy").parse(dataNascimento);
-		cliente.setDataNasc(date);
+	public void showMessage(Cliente cliente) {
+		cliente.setNome(JOptionPane.showInputDialog("Nome:").toUpperCase());
+		cliente.setGenero(JOptionPane.showInputDialog("Genero:"));
+		cliente.setDataNasc(JOptionPane.showInputDialog("Data de nascimento:"));
 		cliente.setTelefone(JOptionPane.showInputDialog("Telefone: "));
-		cliente.setIdCliente(c);
-		
-		clientes.add(cliente);
-		return clientes;		
 	}
-	
-	public void remove (List<Cliente> clientes) {
-		int  id = Integer.parseInt(JOptionPane.showInputDialog("Insira o id do cliente que deseja remover: "));
-        
-        for (Cliente c: clientes){
-            if(c.getIdCliente() == id){
-                clientes.remove(c.getIdCliente());
-                JOptionPane.showMessageDialog(null, "Cliente excluído."); 
-                break;
-            }                
-        } 
-    }
-	
-	public void read(List<Cliente> clientes) {
-		//Collections.sort(clientes);
-		
-		for(Cliente c: clientes) {
-			JOptionPane.showMessageDialog(null, c.getNome());
+
+	public int typeList() {
+		int op = Integer.parseInt(JOptionPane
+				.showInputDialog("1-Listar todos\nListar por genero:\n" + " \t \t2-Feminino \n \t \t3-Masculino"));
+		return op;
+	}
+
+	public int selectId() {
+		int id = Integer.parseInt(JOptionPane.showInputDialog("id do cliente a ser removido: "));
+		return id;
+	}
+
+	public void lidaOpcaoCliene(int op) {
+		ClienteDAO dao = new ClienteDAO();
+
+		if (op == 1)
+			dao.createCliente();
+
+		else if (op == 2) {
+			int opcao = typeList();
+			dao.listClientes(opcao);
+		}
+
+		else if (op == 3) {
+			int id = selectId();
+			dao.deleteCliente(id);
+
+		}
+
+		else if (op == 4) {
+			int id = selectId();
+			dao.updateCliente(id);
+		}
+
+		else if (op == 0) {
+
 		}
 	}
+
 }
