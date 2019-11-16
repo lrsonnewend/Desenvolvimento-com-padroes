@@ -1,10 +1,7 @@
 package br.com.model;
 
-import java.text.Collator;
-import java.util.Date;
-import java.util.Locale;
 
-public class Cliente implements Comparable<Cliente>{
+public class Cliente{
 
 	private int idCliente;
 	private String nome, telefone, genero;
@@ -58,16 +55,4 @@ public class Cliente implements Comparable<Cliente>{
 		this.dataNasc = dataNasc;
 	}
 	
-
-
-
-	@Override
-	public int compareTo(Cliente c) {
-		Collator col = Collator.getInstance(new Locale("pt", "BR"));
-		if(c != null)
-			return col.compare(this.getNome(), c.getNome());	
-		
-		else
-			return 0;
-	}
 }

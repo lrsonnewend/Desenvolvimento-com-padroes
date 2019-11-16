@@ -40,13 +40,12 @@ public class ServicoDAO {
 	 * 
 	 */
 
-	public boolean createCliente() {
+	public boolean createServico() {
 		Servico s = Servico.newServico();
 
 		es.showMessage(s);
 
-		String sql = "insert into servicos (nome_servico, valor_servico) values " + "(?,?);"; // string sql para
-																								// execucao
+		String sql = "insert into servicos (nome_servico, valor_servico) values " + "(?,?);"; // string sql para execucao
 
 		PreparedStatement stmt = conDB.newPreparedStmt(sql); // criando um stmt com atributos para ser executada no bd
 
@@ -78,9 +77,7 @@ public class ServicoDAO {
 	}
 
 	/**
-	 * metodo para listar clientes
-	 * 
-	 * @param op - opcao de listagem
+	 * metodo para listar servicos
 	 * 
 	 */
 
@@ -101,7 +98,7 @@ public class ServicoDAO {
 			while (rs.next()) {
 				System.out.println(rs.getInt("id_servico"));
 				System.out.println("Nome: " + rs.getString("nome_servico"));
-				System.out.println("Valor R$: " + rs.getString("valor_Servico"));
+				System.out.println("Valor R$: " + rs.getString("valor_Servico")+"\n");
 
 			}
 
@@ -119,76 +116,4 @@ public class ServicoDAO {
 			}
 		}
 	}
-	
-	
-
-	/**
-	 * metodo para deletar um cliente
-	 * 
-	 * @param id - recebe o id do cliente a ser removido
-	 * @return true - se o cliente foi removido. false - se o cliente nao foi
-	 *         removido
-	 */
-
-//	public boolean deleteCliente(int id) {
-//
-//		PreparedStatement stmt = null;
-//		String sql = "delete from clientes where id_cliente = ?"; // string com sql a ser executada
-//
-//		try {
-//			stmt = conDB.newPreparedStmt(sql); // criando um novo stmt para executar a sql com o parametro id
-//			stmt.setInt(1, id); // setando o valor no stmt
-//			stmt.executeUpdate(); // executando a query sql
-//
-//			System.out.println("cliente deletado.");
-//			return true;
-//
-//		} catch (SQLException e) {
-//			System.err.println("erro ao deletar: " + e);
-//			return false;
-//		} finally { // metodo para fechar as conexoes com o banco
-//			try {
-//				stmt.close();
-//				conDB.closeCon();
-//
-//			} catch (SQLException e) {
-//				System.err.println("erro ao fechar conexoes: " + e);
-//
-//			}
-//		}
-//	}
-//
-//	public boolean updateCliente(int id) {
-//		Cliente c = Cliente.newCliente();
-//
-//		ec.showMessage(c);
-//
-//		PreparedStatement stmt = null;
-//		String sql = "update clientes set nome_cliente = ?, genero_cliente = ?, telefone_cliente = ?, "
-//				+ "dataNasc_cliente = ? where id_cliente = ?;";
-//
-//		try {
-//			stmt = conDB.newPreparedStmt(sql);
-//			stmt.setString(1, c.getNome());
-//			stmt.setString(2, c.getGenero());
-//			stmt.setString(3, c.getTelefone());
-//			stmt.setString(4, c.getDataNasc());
-//			stmt.setInt(5, id);
-//
-//			stmt.executeUpdate();
-//			System.out.println("alterado com sucesso.");
-//			return true;
-//
-//		} catch (SQLException e) {
-//			System.out.println("erro ao alterar cliente: " + e);
-//			return false;
-//		} finally {
-//			try {
-//				conDB.closeCon();
-//				stmt.close();
-//			} catch (SQLException e) {
-//				System.out.println("erro ao fechar conexoes: " + e);
-//			}
-//		}
-//	}
 }

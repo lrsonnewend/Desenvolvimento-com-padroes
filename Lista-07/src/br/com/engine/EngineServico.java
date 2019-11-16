@@ -17,7 +17,7 @@ public class EngineServico {
 		ServicoDAO dao = new ServicoDAO();
 
 		if (op == 1)
-			dao.createCliente();
+			dao.createServico();
 
 		else if (op == 2) {
 			dao.listServicos();

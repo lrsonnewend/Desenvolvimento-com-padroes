@@ -1,5 +1,8 @@
 package br.com.engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 import br.com.model.Cliente;
@@ -16,14 +19,14 @@ public class EngineCliente {
 	}
 
 	public int typeList() {
-		int op = Integer.parseInt(JOptionPane
+		
+		return Integer.parseInt(JOptionPane
 				.showInputDialog("1-Listar todos\nListar por genero:\n" + " \t \t2-Feminino \n \t \t3-Masculino"));
-		return op;
 	}
 
 	public int selectId() {
-		int id = Integer.parseInt(JOptionPane.showInputDialog("id do cliente a ser removido: "));
-		return id;
+		return Integer.parseInt(JOptionPane.showInputDialog("id do cliente a ser removido: "));
+
 	}
 
 	public void lidaOpcaoCliene(int op) {
@@ -33,24 +36,26 @@ public class EngineCliente {
 			dao.createCliente();
 
 		else if (op == 2) {
-			int opcao = typeList();
-			dao.listClientes(opcao);
+			List<Cliente> clientes = new ArrayList<>();
+			clientes = dao.listClientes(typeList());
+			for(Cliente c: clientes) {
+				System.out.println("Nome: "+c.getNome());
+				System.out.println("Genero: "+c.getGenero());
+				System.out.println("Data de nascimento: "+c.getDataNasc());
+				System.out.println("Telefone: "+c.getTelefone()+"\n");
+			}
 		}
 
 		else if (op == 3) {
-			int id = selectId();
-			dao.deleteCliente(id);
-
+			dao.deleteCliente(selectId());
 		}
 
 		else if (op == 4) {
-			int id = selectId();
-			dao.updateCliente(id);
+			dao.updateCliente(selectId());
 		}
 
 		else if (op == 0) {
 
 		}
 	}
-
 }

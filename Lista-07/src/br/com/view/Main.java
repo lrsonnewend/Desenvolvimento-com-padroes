@@ -7,65 +7,59 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import br.com.engine.CreateTables;
+import br.com.engine.EngineCS;
 import br.com.engine.EngineCliente;
+import br.com.engine.EngineData;
 import br.com.engine.EngineServico;
 import br.com.model.Cliente;
+import br.com.model.DAO.CliServDAO;
 import br.com.model.DAO.ClienteDAO;
+import br.com.model.DAO.RelatorioDAO;
 import connectionSqlite.ConnectionDB;
 
-public class Main{
+public class Main {
 	public static void main(String[] args) throws ParseException {
 		EngineCliente ec = new EngineCliente();
 		EngineServico es = new EngineServico();
+		EngineCS ecs = new EngineCS();
+		EngineData data = new EngineData();
 		Menu menu = new Menu();
-		ConnectionDB cdb = new ConnectionDB();
-		
+		/*ConnectionDB condb = new ConnectionDB();
+		CreateTables ctb = new CreateTables(condb);
+		ctb.tableClienteXServico();*/
+
 
 		while (true) {
-			ClienteDAO dao = new ClienteDAO();
-			int op = menu.menuPrincipal();
-			
-			if(op == 1) {
-				int retorno = menu.menuCliente();
-				ec.lidaOpcaoCliene(retorno);
+			CliServDAO csDAO = new CliServDAO();
+			int opcao = menu.menuPrincipal();
+
+			if (opcao == 1) {
+				int op = menu.menuCliente();
+				ec.lidaOpcaoCliene(op);
+			}
+
+			else if (opcao == 2) {
+				int op = menu.menuServico();
+				es.lidaOpcaoServico(op);
 			}
 			
-			else if(op == 2) {
-				int retorno = menu.menuServico();
-				es.lidaOpcaoServico(retorno);
+			else if(opcao == 3) {
+				csDAO.createCS();
 			}
 			
-			else if(op == 0)
+			else if(opcao == 4) {
+				int op = menu.menuRelatorio();
+				ecs.lidaOpcaoCS(op);
+				
+			}
+			
+			else if(opcao == 5) {
+				data.salvaInfo();				
+			}
+
+			else if (opcao == 0)
 				break;
 		}
-			
 
-//		while (true) {
-//
-//			int op = Integer.parseInt(JOptionPane.showInputDialog("1-CADASTRO\n2-LISTAR CLIENTES\n3-REMOVER UM CLIENTE"
-//					+ "\n4-EDITAR CLIENTE\n5-RELATORIO\n0-Sair"));
-//
-//			if (op == 1)
-//				ec.create();
-//
-//			else if (op == 2) {
-//				int opcao = Integer.parseInt(JOptionPane.showInputDialog("1-Listar todos\nListar por genero:\n"
-//						+ " \t \t2-Feminino \n \t \t3-Masculino"));
-//				dao.listClientes(opcao);
-//			}
-//			
-//			else if(op == 3) {
-//				int id = Integer.parseInt(JOptionPane.showInputDialog("id do cliente a ser removido: "));
-//				
-//				dao.deleteCliente(id);
-//			}
-//			else if(op == 4)
-//				ec.update(clientes);
-//
-//			else if(op == 0)
-//				break;
-//		}
-//
-//	}
 	}
 }

@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -87,24 +89,21 @@ public class ClienteDAO {
 	 * 
 	 */
 	
-	public void listClientes(int op){
+	public List<Cliente> listClientes(int op){
+		List <Cliente> clientes = new ArrayList<Cliente>();
 
 		String sql = null; //string para ser executada no banco de dados
-		String cabecalho = null;
 		
 		if(op == 1) {
 			sql = "select * from clientes order by nome_cliente;";
-			cabecalho = "********** LISTANDO TODOS **********";
 		}
 		
 		else if(op == 2) {
 			sql = "select * from clientes where genero_cliente = 'f' or genero_cliente = 'F' order by nome_cliente;";
-			cabecalho = "********** LISTANDO MULHERES **********";
 		}
 		
 		else if(op == 3) {
 			sql = "select * from clientes where genero_cliente = 'm' or genero_cliente = 'M' order by nome_cliente;";
-			cabecalho = "********** LISTANDO HOMENS **********";
 		}
 		
 		ResultSet rs = null; //recebe os resultados da busca no bd
@@ -113,16 +112,15 @@ public class ClienteDAO {
 		
 		try{			
 			rs = statement.executeQuery(sql); //atribuindo os valores da consulta 
-			
-			System.out.println(cabecalho);
-			
+						
 			while(rs.next()) {
-				System.out.println(rs.getInt("id_cliente"));
-				System.out.println("Nome: "+ rs.getString("nome_cliente"));
-				System.out.println("Genero: "+ rs.getString("genero_cliente"));
-				System.out.println("Data de nascimento: "+ rs.getString("dataNasc_cliente"));
-				System.out.println("Telefone: "+ rs.getString("telefone_cliente")+"\n");				
-				
+				Cliente c = Cliente.newCliente();
+				c.setIdCliente(rs.getInt("id_cliente"));
+				c.setNome(rs.getString("nome_cliente"));
+				c.setGenero(rs.getString("genero_cliente"));
+				c.setDataNasc(rs.getString("dataNasc_cliente"));
+				c.setTelefone(rs.getString("telefone_cliente"));
+				clientes.add(c);				
 			}
 			
 		}catch(SQLException e) {
@@ -137,7 +135,9 @@ public class ClienteDAO {
 			}catch(SQLException e) {
 				System.err.println("erro ao fechar resultSet: "+e);
 			}
-		}	
+		}
+		
+		return clientes;
 	}
 	
 	
