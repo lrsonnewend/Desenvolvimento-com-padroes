@@ -26,17 +26,24 @@ public class EngineCS {
 		return Integer.parseInt(JOptionPane.showInputDialog("1-GERAL\n2-MASCULINO\n3-FEMININO"));
 	}
 	
+	public int lidaGenIdade() {
+		return Integer.parseInt(JOptionPane.showInputDialog("1-GERAL\n2-MASCULINO\n3-FEMININO"));
+	}
+	
 	
 
 	public void lidaOpcaoCS(int op) {
 		CliServDAO dao = new CliServDAO();
 		RelatorioDAO rdao = new RelatorioDAO();
-		if (op == 1) {
+		if (op == 1) 
 			dao.listClientes(getIDCliente());
-		}
 		
-		if(op == 2) {
+		
+		else if(op == 2) 
 			rdao.servicoMaisProcurado(listarMaisProcurado());
-		}
+
+		
+		else if(op == 3) 
+			rdao.avgIdade(lidaGenIdade());
 	}
 }

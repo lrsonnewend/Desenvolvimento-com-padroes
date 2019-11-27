@@ -24,9 +24,9 @@ public class Main {
 		EngineCS ecs = new EngineCS();
 		EngineData data = new EngineData();
 		Menu menu = new Menu();
-		/*ConnectionDB condb = new ConnectionDB();
-		CreateTables ctb = new CreateTables(condb);
-		ctb.tableClienteXServico();*/
+		
+//		ConnectionDB condb = new ConnectionDB();
+//		CreateTables ctb = new CreateTables(condb);
 
 
 		while (true) {

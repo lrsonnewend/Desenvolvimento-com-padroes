@@ -21,7 +21,7 @@ public class Menu {
 	}
 	
 	public int menuRelatorio() {
-		return  Integer.parseInt(JOptionPane.showInputDialog("1-LISTAR SERVICOS POR CLIENTE\n2-SERVICO MAIS PROCURADO"));
+		return  Integer.parseInt(JOptionPane.showInputDialog("1-LISTAR SERVICOS POR CLIENTE\n2-SERVICO MAIS PROCURADO\n3-IDADE MEDIA"));
 	}
 	
 	

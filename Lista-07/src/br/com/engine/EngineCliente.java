@@ -13,13 +13,13 @@ public class EngineCliente {
 
 	public void showMessage(Cliente cliente) {
 		cliente.setNome(JOptionPane.showInputDialog("Nome:").toUpperCase());
-		cliente.setGenero(JOptionPane.showInputDialog("Genero:"));
-		cliente.setDataNasc(JOptionPane.showInputDialog("Data de nascimento:"));
+		cliente.setGenero(JOptionPane.showInputDialog("Genero:").toUpperCase());
+		cliente.setDataNasc(JOptionPane.showInputDialog("Data de nascimento (yyy-MM-dd):"));
 		cliente.setTelefone(JOptionPane.showInputDialog("Telefone: "));
 	}
 
 	public int typeList() {
-		
+
 		return Integer.parseInt(JOptionPane
 				.showInputDialog("1-Listar todos\nListar por genero:\n" + " \t \t2-Feminino \n \t \t3-Masculino"));
 	}
@@ -38,11 +38,11 @@ public class EngineCliente {
 		else if (op == 2) {
 			List<Cliente> clientes = new ArrayList<>();
 			clientes = dao.listClientes(typeList());
-			for(Cliente c: clientes) {
-				System.out.println("Nome: "+c.getNome());
-				System.out.println("Genero: "+c.getGenero());
-				System.out.println("Data de nascimento: "+c.getDataNasc());
-				System.out.println("Telefone: "+c.getTelefone()+"\n");
+			for (Cliente c : clientes) {
+				System.out.println("Nome: " + c.getNome());
+				System.out.println("Genero: " + c.getGenero());
+				System.out.println("Data de nascimento: " + c.getDataNasc());
+				System.out.println("Telefone: " + c.getTelefone() + "\n");
 			}
 		}
 

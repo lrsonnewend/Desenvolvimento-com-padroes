@@ -12,23 +12,23 @@ public class CreateTables {
 	public CreateTables(ConnectionDB pConnectionDB) {
 		this.conBD = pConnectionDB;
 		
-//		String sql = "UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='cliente_servico';";
-//
-//		// executando o sql
-//		boolean execute = false;
-//
-//		try {
-//			execute = this.conBD.connection();
-//			Statement stmt = this.conBD.newStatement();
-//			stmt.execute(sql);
-//
-//		} catch (SQLException e) {
-//			System.err.println("erro ao criar tabela no bd: " + e);
-//
-//		} finally {
-//			if (execute)
-//				this.conBD.closeCon();
-//		}
+		String sql = "UPDATE clientes SET genero_cliente = 'M' WHERE id_cliente = 1;";
+
+		// executando o sql
+		boolean execute = false;
+
+		try {
+			execute = this.conBD.connection();
+			Statement stmt = this.conBD.newStatement();
+			stmt.execute(sql);
+
+		} catch (SQLException e) {
+			System.err.println("erro ao criar tabela no bd: " + e);
+
+		} finally {
+			if (execute)
+				this.conBD.closeCon();
+		}
 	}
 
 	/**
