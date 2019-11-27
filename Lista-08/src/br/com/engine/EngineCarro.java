@@ -1,5 +1,7 @@
 package br.com.engine;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 import br.com.model.Carro;
@@ -19,7 +21,7 @@ public class EngineCarro {
 		carro.setValorCompra(Double.parseDouble(JOptionPane.showInputDialog("Valor R$:")));
 	}
 	
-	public void lidaOpcaoServico(int op) {
+	public void lidaOpcaoCarro(int op) throws IOException {
 		CarroDAO dao = new CarroDAO();
 
 		if (op == 1)
@@ -27,6 +29,7 @@ public class EngineCarro {
 
 		else if (op == 2) {
 			dao.listCarros();
+			dao.salvaCarros();
 		}
 
 //		else if (op == 3) {

@@ -1,5 +1,9 @@
 package br.com.model.DAO;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,7 +92,6 @@ public class CarroDAO {
 	public void listCarros() {
 
 		String sql = "select * from carros;";
-		String cabecalho = "********** CARANGAS **********";
 
 		ResultSet rs = null; // recebe os resultados da busca no bd
 		Statement statement = null; // executa a string sql
@@ -96,8 +99,6 @@ public class CarroDAO {
 
 		try {
 			rs = statement.executeQuery(sql); // atribuindo os valores da consulta
-
-			System.out.println(cabecalho);
 
 			while (rs.next()) {
 				System.out.println(rs.getInt("id_carro"));
@@ -123,6 +124,46 @@ public class CarroDAO {
 		}
 	}
 	
+	public void salvaCarros() throws IOException {
+		String sql = "select * from carros;";
+		ResultSet rs = null; // recebe os resultados da busca no bd
+		Statement statement = null; // executa a string sql
+		statement = conDB.newStatement();
+
+		try {
+			rs = statement.executeQuery(sql); // atribuindo os valores da consulta
+			PrintWriter pw = new PrintWriter(new FileWriter("/home/lucas/Documentos/info.txt", true));
+			pw.println();
+			pw.println("CARROS");
+			
+			while (rs.next()) {
+				pw.println();		        
+				pw.println(rs.getInt("id_carro"));
+				pw.println("Placa: " + rs.getString("numero_placa"));
+				pw.println("Modelo: " + rs.getString("modelo"));
+				pw.println("Ano fabricacao: "+ rs.getString("ano_fabricacao"));
+				pw.println("Valor de compra: "+rs.getDouble("valor_compra"));
+				pw.println();
+				pw.println();
+
+			}
+			pw.println("##################");
+			pw.flush();
+			pw.close();
+
+		} catch (SQLException e) {
+			System.err.println("erro ao listar todos os servicos: " + e);
+
+		} finally { // metodo para fechar as conexoes com o bd
+			try {
+				statement.close();
+				rs.close();
+
+			} catch (SQLException e) {
+				System.err.println("erro ao fechar resultSet: " + e);
+			}
+		}
+	}
 	
 
 	/**

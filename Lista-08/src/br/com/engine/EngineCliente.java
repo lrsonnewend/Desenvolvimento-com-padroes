@@ -15,11 +15,6 @@ public class EngineCliente {
 		cliente.setCpf(JOptionPane.showInputDialog("CPF:"));
 	}
 
-	public int typeList() {
-		int op = Integer.parseInt(JOptionPane
-				.showInputDialog("1-Listar todos\nListar por genero:\n" + " \t \t2-Feminino \n \t \t3-Masculino"));
-		return op;
-	}
 
 	public int selectId() {
 		int id = Integer.parseInt(JOptionPane.showInputDialog("id do cliente a ser removido: "));
@@ -33,20 +28,19 @@ public class EngineCliente {
 			dao.createCliente();
 
 		else if (op == 2) {
-			int opcao = typeList();
-			dao.listClientes(opcao);
+			dao.listClientes();
 		}
-
-		else if (op == 3) {
-			int id = selectId();
-			dao.deleteCliente(id);
-
-		}
-
-		else if (op == 4) {
-			int id = selectId();
-			dao.updateCliente(id);
-		}
+//
+//		else if (op == 3) {
+//			int id = selectId();
+//			dao.deleteCliente(id);
+//
+//		}
+//
+//		else if (op == 4) {
+//			int id = selectId();
+//			dao.updateCliente(id);
+//		}
 
 		else if (op == 0) {
 
